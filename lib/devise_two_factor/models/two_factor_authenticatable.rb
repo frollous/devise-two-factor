@@ -32,7 +32,7 @@ module Devise
         return false unless code.present? && otp_secret.present?
 
         totp = self.otp(otp_secret)
-        return consume_otp! if totp.verify_with_drift(code, self.class.otp_allowed_drift)
+        return consume_otp! if totp.verify(code, drift_ahead: self.class.otp_allowed_drift)
 
         false
       end
@@ -47,7 +47,7 @@ module Devise
 
       # ROTP's TOTP#timecode is private, so we duplicate it here
       def current_otp_timestep
-         Time.now.utc.to_i / otp.interval
+        Time.now.utc.to_i / otp.interval
       end
 
       def otp_provisioning_uri(account, options = {})
