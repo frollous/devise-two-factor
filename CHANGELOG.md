@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 4.1.0
+- Support Rails 6.1
+
+## 4.0.0
+- Support ROTP V6.1
+
 ## 3.0.2
 - Add Rails 5.1 support
 
